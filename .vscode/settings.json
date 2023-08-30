@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "/Users/xiechao/workspace/labs/parallel_programming_in_MPI_and_OpenMP",
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "ostream": "cpp"
+    }
+}

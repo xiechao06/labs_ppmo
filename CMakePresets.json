@@ -1,0 +1,77 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "dev-gcc",
+      "displayName": "GCC 13.1.0",
+      "description": "Using gcc compilers",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+        "CMAKE_C_COMPILER": "${env:CONDA_PREFIX}/bin/gcc",
+        "CMAKE_CXX_COMPILER": "${env:CONDA_PREFIX}/bin/g++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "dev-clang",
+      "displayName": "Clang 14.0.6",
+      "description": "",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+        "CMAKE_C_COMPILER": "${env:CONDA_PREFIX}/bin/clang",
+        "CMAKE_CXX_COMPILER": "${env:CONDA_PREFIX}/bin/clang++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "dev-clang-release",
+      "displayName": "Clang 14.0.6 Release",
+      "description": "",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+        "CMAKE_C_COMPILER": "${env:CONDA_PREFIX}/bin/clang",
+        "CMAKE_CXX_COMPILER": "${env:CONDA_PREFIX}/bin/clang++",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev-gcc-ninja-debug",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "dev-gcc",
+      "configuration": "Debug"
+    },
+    {
+      "name": "dev-gcc-ninja-release",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "dev-gcc-release",
+      "configuration": "Release"
+    },
+    {
+      "name": "dev-clang-ninja-debug",
+      "configuration": "Debug",
+      "configurePreset": "dev-clang",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "dev-clang-ninja-release",
+      "configuration": "Release",
+      "configurePreset": "dev-clang-release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    }
+  ]
+}
